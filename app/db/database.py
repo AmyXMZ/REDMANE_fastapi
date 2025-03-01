@@ -2,7 +2,9 @@ from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 
-DATABASE_URL = "postgresql+psycopg2://postgres:password@127.0.0.1:5433/redmane"
+# DATABASE_URL = "postgresql+psycopg2://postgres:password@127.0.0.1:5433/redmane" #for local connection on VSCode
+DATABASE_URL = "postgresql+psycopg2://psqladmin:12345@115.146.86.241:5432/redmane"
+
 
 engine = create_engine(DATABASE_URL)  
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
