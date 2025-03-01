@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from alembic import command
-from alembic.config import Config
+from app.db.database import engine, Base
 from app.api.routes import router as api_router
 
 app = FastAPI()
@@ -15,14 +14,13 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
-# Run Alembic Migrations on Startup (Database Initialization)
+# Create database tables manually on startup
 @app.on_event("startup")
 def startup_event():
-    print("Running Alembic Migrations...")
-    alembic_cfg = Config("alembic.ini")
-    command.upgrade(alembic_cfg, "head")
-    print("Database is up-to-date!")
-
+    print("Creating database tables...")
+    Base.metadata.create_all(bind=engine)  # Creates tables if they don't exist
+    print("Database setup complete!")
+    
 # Register API routes
 app.include_router(api_router)
 
