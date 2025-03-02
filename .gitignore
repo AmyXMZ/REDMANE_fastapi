@@ -15,3 +15,5 @@ alembic/
 
 # Ignore package dependencies in virtual environment
 **/Lib/site-packages/
+
+env/
