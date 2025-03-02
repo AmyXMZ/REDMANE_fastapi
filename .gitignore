@@ -3,3 +3,15 @@ __pycache__/
 *.swp
 *.test.dat
 *.tsv
+
+# Ignore logs
+logs/
+*.log
+
+# Database and migrations (if applicable)
+*.sqlite3
+*.db
+alembic/
+
+# Ignore package dependencies in virtual environment
+**/Lib/site-packages/
